@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+    <title>Hello page</title>
+</head>
+<body>
+ <h1>Hello World!</h1>
+
+ <h2 th:text="${firstName}"></h2>
+ <h2 th:text="${lastName}"></h2>
+
+<table border="1">
+    <th:block th:each="curr : ${data}">
+         <tr>
+             <td><a th:href="${/}"></a></td>
+             <td th:text="${curr.currency}"></td>
+             <td th:text="${curr.shortcut}"></td>
+         </tr>
+    </th:block>
+
+
+</table>
+
+
+<form method="POST" th:action="@{/reserve}" th:object="${customer}">
+    <input type="text" name="firstName" th:value="*{firstName}" required>
+    <input type="text" name="lastName" th:value="*{lastName}" required>
+    <input type="submit" value="Reserve Room">
+</form>
+
+
+<br>
+
+<form method="POST" th:action="@{/check}" th:object="${product}" enctype="multipart/form-data">
+    <input type="text" name="name" th:value="*{name}" required>
+    <input type="number" name="number" th:value="*{price}" required>
+    <input type="file" name="image" th:value="*{image}" required>
+    <input type="submit" value="Check">
+</form>
+
+
+
+
+</body>
+</html>
